@@ -6,12 +6,12 @@ const NewsAPI = require('newsapi');
 
 function MainContent() {
     const newsapi = new NewsAPI('185762625a6b479b87bc8a3dc79b4cb0');
-    const [News, setNews] = useState([])
+    const [News, setNews] = useState()
     const [search, setSearch]=useState("");
     const [query,setQuery]=useState({
-        q: 'bitcoin',
-        sources: 'bbc-news,the-verge',
-        domains: 'bbc.co.uk, techcrunch.com',
+        q: 'killer',
+        sources: '',
+        domains: '',
         from: '2021-1-5',
         to: '2021-1-12',
         language: 'en',
@@ -29,9 +29,11 @@ function MainContent() {
     setQuery(search);
     setSearch("");
     }
+
     const getNews = (query) => {
         newsapi.v2.everything(query).then(response => {
-            console.log(response);
+            console.log(response.articles)
+            setNews(response.articles)
         });
     }
 
@@ -57,7 +59,7 @@ function MainContent() {
             {/*Main content*/}
             <div className="w-full flex justify-center my-4">
                 <div className="w-full mx-0 md:w-9/12 lg:w-7/12">
-                <NewsCards/>
+                    {News? News.map((each)=>(<NewsCards data={each}/>)):<p>Loading</p>}
                 </div>
             </div>  
         </div>
