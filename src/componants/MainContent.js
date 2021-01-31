@@ -1,9 +1,44 @@
 import React from 'react'
+import {useEffect, useState} from 'react'
 import { BsSearch } from "react-icons/bs";
 import NewsCards from "./NewsCards"
-import axios from 'axios'
+const NewsAPI = require('newsapi');
 
 function MainContent() {
+    const newsapi = new NewsAPI('185762625a6b479b87bc8a3dc79b4cb0');
+    const [News, setNews] = useState([])
+    const [search, setSearch]=useState("");
+    const [query,setQuery]=useState({
+        q: 'bitcoin',
+        sources: 'bbc-news,the-verge',
+        domains: 'bbc.co.uk, techcrunch.com',
+        from: '2021-1-5',
+        to: '2021-1-12',
+        language: 'en',
+        sortBy: 'relevancy',
+        page: 2
+    });
+    
+    
+    const updateSearch= e => {
+        setSearch(e.target.value);
+    }
+    
+    const getSearch= e =>{
+    e.preventDefault();
+    setQuery(search);
+    setSearch("");
+    }
+    const getNews = (query) => {
+        newsapi.v2.everything(query).then(response => {
+            console.log(response);
+        });
+    }
+
+    useEffect(() => {
+        getNews(query)
+    }, [query])
+
     return (
         <div className="w-12/12 p-4">
             {/*Search*/}
@@ -13,7 +48,9 @@ function MainContent() {
                         <span className="text-gray-500 mx-2"><BsSearch/></span>
                     </div>
                     <div className="flex-grow">
-                        <input className="w-full outline-none bg-blue-600 bg-opacity-0 text-white py-1 rounded-md" type="text" placeholder="Search for news"/>
+                        <form onSubmit={getSearch} className="search-form">
+                            <input  value={search} onChange={updateSearch} type="text" placeholder="Search for news" className="w-full outline-none bg-blue-600 bg-opacity-0 text-white py-1 rounded-md" />
+                        </form>     
                     </div>
                 </div>
             </div>
