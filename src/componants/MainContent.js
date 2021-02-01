@@ -9,14 +9,14 @@ function MainContent() {
     const [News, setNews] = useState()
     const [search, setSearch]=useState("");
     const [query,setQuery]=useState({
-        q: 'killer',
+        q: 'serial murders',
         sources: '',
         domains: '',
-        from: '2021-1-5',
+        from: '2021-2-1',
         to: '2021-1-12',
         language: 'en',
-        sortBy: 'relevancy',
-        page: 2
+        sortBy: 'popularity',
+        page: 1
     });
     
     
