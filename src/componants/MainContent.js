@@ -58,7 +58,7 @@ function MainContent() {
             </div>
             {/*Main content*/}
             <div className="w-full flex justify-center my-4">
-                <div className="w-full mx-0 md:w-9/12 lg:w-7/12">
+                <div className="w-full mx-0 md:w-768 lg:w-900">
                     {News? News.map((each)=>(<NewsCards data={each}/>)):<p>Loading</p>}
                 </div>
             </div>  
