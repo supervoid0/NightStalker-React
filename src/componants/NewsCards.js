@@ -14,7 +14,7 @@ function NewsCards({data}) {
                     <p className=" text-white">{data.content}</p>
                 </div>
                 <div className="text-right">
-                    <a href={data.url} target="_blank"><span className="text-blue-600 text-base"> Read more..</span></a>
+                    <a href={data.url} target="_blank"><span className="text-blue-500 hover:text-blue-600 text-xs md:text-base"> Read more..</span></a>
                 </div>
             </div>
         </div>
