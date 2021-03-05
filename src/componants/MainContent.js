@@ -26,7 +26,16 @@ function MainContent() {
     
     const getSearch= e =>{
     e.preventDefault();
-    setQuery(search);
+    setQuery({
+        q: search ,
+        sources: '',
+        domains: '',
+        from: '2021-2-1',
+        to: '2021-1-12',
+        language: 'en',
+        sortBy: 'popularity',
+        page: 1
+    });
     setSearch("");
     }
 
