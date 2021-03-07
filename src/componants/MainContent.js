@@ -1,54 +1,21 @@
 import React from 'react'
 import {useEffect, useState} from 'react'
 import { BsSearch } from "react-icons/bs";
-import NewsCards from "./NewsCards"
-const NewsAPI = require('newsapi');
 
 function MainContent() {
-    const newsapi = new NewsAPI('185762625a6b479b87bc8a3dc79b4cb0');
-    const [News, setNews] = useState()
     const [search, setSearch]=useState("");
-    const [query,setQuery]=useState({
-        q: 'serial murders',
-        sources: '',
-        domains: '',
-        from: '2021-2-1',
-        to: '2021-1-12',
-        language: 'en',
-        sortBy: 'popularity',
-        page: 1
-    });
+    const [query,setQuery]=useState("");
     
     
-    const updateSearch= e => {
+    const updateSearch = e => {
         setSearch(e.target.value);
     }
     
     const getSearch= e =>{
     e.preventDefault();
-    setQuery({
-        q: search ,
-        sources: '',
-        domains: '',
-        from: '2021-2-1',
-        to: '2021-1-12',
-        language: 'en',
-        sortBy: 'popularity',
-        page: 1
-    });
+    setQuery();
     setSearch("");
     }
-
-    const getNews = (query) => {
-        newsapi.v2.everything(query).then(response => {
-            console.log(response.articles)
-            setNews(response.articles)
-        });
-    }
-
-    useEffect(() => {
-        getNews(query)
-    }, [query])
 
     return (
         <div className="w-12/12 p-4">
@@ -60,17 +27,33 @@ function MainContent() {
                     </div>
                     <div className="flex-grow">
                         <form onSubmit={getSearch} className="search-form">
-                            <input  value={search} onChange={updateSearch} type="text" placeholder="Search for news" className="w-full outline-none bg-blue-600 bg-opacity-0 text-white py-1 rounded-md" />
+                            <input  value={search} onChange={updateSearch} type="text" placeholder="Search for Music" className="w-full outline-none bg-blue-600 bg-opacity-0 text-white py-1 rounded-md" />
                         </form>     
                     </div>
                 </div>
-            </div>
-            {/*Main content*/}
-            <div className="w-full flex justify-center my-4">
-                <div className="w-full mx-0 md:w-768 lg:w-900">
-                    {News? News.map((each)=>(<NewsCards data={each}/>)):<p>Loading</p>}
+            </div> 
+            <div className="w-full flex flex-col lg:flex-row justify-center">
+                {/*Left section*/}
+                <div className="hidden lg:w-3/12 lg:flex"></div>
+
+                {/*music section*/}
+                <div className="w-full lg:w-6/12 overflow-y-auto h-768 bg-blue-400">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2 grid-flow-row">
+                        <div className="h-24 bg-black"></div>
+                        <div className="h-24 bg-black"></div>
+                        <div className="h-24 bg-black"></div>
+                        <div className="h-24 bg-black"></div>
+                        <div className="h-24 bg-black"></div>
+                        <div className="h-24 bg-black"></div>
+                        <div className="h-24 bg-black"></div>
+                        <div className="h-24 bg-black"></div>
+                        <div className="h-24 bg-black"></div>
+                    </div>
                 </div>
-            </div>  
+
+                {/*Right section*/}
+                <div className="lg:w-3/12 text-white"></div>
+            </div>
         </div>
     )
 }

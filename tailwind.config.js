@@ -7,6 +7,11 @@ module.exports = {
         '768': '768px',
         '900': '900px'
       },
+      height: {
+        '500': '500px',
+        '768': '768px',
+        '900': '900px'
+      },
     },
     backgroundColor: theme => ({
       ...theme('colors'),
