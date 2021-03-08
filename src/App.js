@@ -3,7 +3,7 @@ import MainContent from "./componants/MainContent"
 
 function App() {
   return (
-    <div className="App bg-secondary h-full">
+    <div className="App bg-secondary h-screen">
       <Layout>
         <MainContent/>
         

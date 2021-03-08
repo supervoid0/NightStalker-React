@@ -1,21 +1,53 @@
 import React from 'react'
+import axios from 'axios'
 import {useEffect, useState} from 'react'
 import { BsSearch } from "react-icons/bs";
+import Cards from './Cards'
 
 function MainContent() {
-    const [search, setSearch]=useState("");
-    const [query,setQuery]=useState("");
-    
+    const proxy = 'https://cors-anywhere.herokuapp.com/'
+    const Search_URL = 'https://api.deezer.com/search?q='
+    const URL = 'https://api.deezer.com/chart'
+
+    const [search, setSearch] = useState("");
+    const [query,setQuery] = useState(null);
+    const [MusicData, setMusicData] = useState([])
     
     const updateSearch = e => {
         setSearch(e.target.value);
     }
     
-    const getSearch= e =>{
-    e.preventDefault();
-    setQuery();
-    setSearch("");
+    const getSearch = e =>{
+        e.preventDefault();
+        setQuery(search);
+        setSearch("");
     }
+
+    const getSearchedMusic = async () =>{
+        try {
+            const responseOfSearch = await axios.get(Search_URL + query)
+            setMusicData(responseOfSearch.data.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const getMusic = async () =>{
+        try {
+            const response = await axios.get(URL)
+            setMusicData(response.data.tracks.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    useEffect(() => {
+        if(query==null){
+            getMusic()
+        }
+        getSearchedMusic() 
+    }, [query])
+
 
     return (
         <div className="w-12/12 p-4">
@@ -34,25 +66,17 @@ function MainContent() {
             </div> 
             <div className="w-full flex flex-col lg:flex-row justify-center">
                 {/*Left section*/}
-                <div className="hidden lg:w-3/12 lg:flex"></div>
+                <div className="hidden lg:w-3/12 xl:w-2/12 lg:flex"></div>
 
                 {/*music section*/}
-                <div className="w-full lg:w-6/12 overflow-y-auto h-768 bg-blue-400">
-                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2 grid-flow-row">
-                        <div className="h-24 bg-black"></div>
-                        <div className="h-24 bg-black"></div>
-                        <div className="h-24 bg-black"></div>
-                        <div className="h-24 bg-black"></div>
-                        <div className="h-24 bg-black"></div>
-                        <div className="h-24 bg-black"></div>
-                        <div className="h-24 bg-black"></div>
-                        <div className="h-24 bg-black"></div>
-                        <div className="h-24 bg-black"></div>
+                <div className="w-full lg:w-6/12 xl:w-7/12 2xl:w-6/12 overflow-y-auto h-440 sm:h-410 pr-2 sm:mt-4">
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-4 grid-flow-row">
+                        {MusicData? MusicData.map((each)=>(<Cards data={each} key={each.id}/>)):<p>Loading..</p>}
                     </div>
                 </div>
 
                 {/*Right section*/}
-                <div className="lg:w-3/12 text-white"></div>
+                <div className="lg:w-3/12 xl:w-2/12 text-white"></div>
             </div>
         </div>
     )
