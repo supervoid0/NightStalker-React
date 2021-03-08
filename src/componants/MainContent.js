@@ -69,7 +69,7 @@ function MainContent() {
                 <div className="hidden lg:w-3/12 xl:w-2/12 lg:flex"></div>
 
                 {/*music section*/}
-                <div className="w-full lg:w-6/12 xl:w-7/12 2xl:w-6/12 overflow-y-auto h-440 sm:h-410 pr-2 sm:mt-4">
+                <div className="w-full lg:w-6/12 xl:w-7/12 2xl:w-6/12 overflow-y-auto h-440 sm:h-410 pr-2 sm:mt-4 sm:border border-gray-800 sm:p-4 sm:box-content" >
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-4 grid-flow-row">
                         {MusicData? MusicData.map((each)=>(<Cards data={each} key={each.id}/>)):<p>Loading..</p>}
                     </div>

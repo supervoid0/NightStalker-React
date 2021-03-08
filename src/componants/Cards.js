@@ -10,9 +10,9 @@ function Cards({data}) {
                     <img className="h-24 w-24 sm:h-20 sm:w-20 object-cover mx-auto" src={data.album.cover_medium}/>
                 </div>
                 <div className="text-white sm:pl-2 h-16 sm:h-20 mt-2 sm:mt-0">
-                    <h1 className="text-xs sm:text-sm overflow-ellipsis overflow-hidden max-h-8 sm:max-h-11">{data.title}</h1>
-                    <h2 className="text-xs mt-1 text-blue-500">Artist- {data.artist.name}</h2>
-                    <h2 className="text-xs h-5 overflow-ellipsis overflow-hidden text-blue-500">Album- {data.album.title}</h2>
+                    <h1 className="text-xs sm:text-sm overflow-ellipsis overflow-hidden max-h-8 sm:max-h-10">{data.title}</h1>
+                    <h2 className="text-xs mt-1 text-blue-500">{data.artist.name}</h2>
+                    <h2 className="text-xs h-5 overflow-ellipsis overflow-hidden text-blue-500">{data.album.title}</h2>
                 </div> 
             </div>
             <div className="w-full mt-2">
