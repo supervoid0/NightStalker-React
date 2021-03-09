@@ -15,6 +15,11 @@ module.exports = {
         '768': '768px',
         '900': '900px'
       },
+
+      maxHeight: {
+        '410': '410px',
+        '440': '440px',
+      }  
     },
     backgroundColor: theme => ({
       ...theme('colors'),
