@@ -11,7 +11,6 @@ function MusicPreview({MusicData}) {
 }
 
 function Cards({data}) {
-    
     return (
         <div className="border border-gray-800 rounded p-2"
         style={{background: 'rgb(13,17,23)', background: 'linear-gradient(100deg, rgba(13,17,23,1) 0%, rgba(56,139,253,0.1) 49%, rgba(46,160,67,0.1) 100%)'}}>

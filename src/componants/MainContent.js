@@ -45,8 +45,9 @@ function MainContent() {
     useEffect(() => {
         if(query==null){
             getMusic()
+        }else{
+            getSearchedMusic()
         }
-        getSearchedMusic() 
     }, [query])
 
 
@@ -75,8 +76,6 @@ function MainContent() {
                 {/*Right section*/}
                 <div className="lg:w-3/12 xl:w-2/12 text-white"></div>
             </div>
-
-            {/*Mid Banner*/}
             <Midbanner/>
         </div>
     )

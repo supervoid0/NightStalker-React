@@ -15,4 +15,4 @@ function Midbanner() {
     )
 }
 
-export default Midbanner
+export default React.memo(Midbanner)

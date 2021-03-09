@@ -1,6 +1,8 @@
 import React from 'react'
 
 function Navbar() {
+    console.log("navbar rendered")
+
     return (
         <div className="w-full bg-primary pl-4 pr-4">
             {/*Desktop/*/}
