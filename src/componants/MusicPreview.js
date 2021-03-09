@@ -2,7 +2,7 @@ import React from 'react'
 
 function MusicPreview({MusicData}) {
     return (
-        <div className="w-full lg:w-6/12 xl:w-7/12 2xl:w-6/12 flex-shrink-0 overflow-y-auto max-h-440 sm:max-h-410 sm:mt-4 sm:border border-gray-800 sm:p-4 sm:box-content rounded" >
+        <div className="w-full lg:w-6/12 xl:w-7/12 2xl:w-6/12 flex-shrink-0 overflow-y-auto max-h-460 sm:max-h-440 sm:mt-4 sm:border border-gray-800 sm:p-4 rounded" >
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-4 grid-flow-row">
                 {MusicData? MusicData.map((each)=>(<Cards data={each} key={each.id}/>)):<p>Loading..</p>}
             </div>

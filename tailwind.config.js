@@ -8,18 +8,19 @@ module.exports = {
         '900': '900px'
       },
       height: {
-        '410': '410px',
-        '440': '440px',
-
         '500': '500px',
         '768': '768px',
         '900': '900px'
       },
 
       maxHeight: {
-        '410': '410px',
         '440': '440px',
-      }  
+        '460': '460px',
+      },
+      
+      fontSize: {
+        xm: ['0.65rem', '1rem'],
+      }
     },
     backgroundColor: theme => ({
       ...theme('colors'),

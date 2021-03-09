@@ -52,7 +52,7 @@ function MainContent() {
 
 
     return (
-        <div className="w-12/12 p-4">
+        <div className="w-12/12 p-4 bg-secondary">
             {/*Search*/}
             <div className="w-full flex justify-center my-4">
                 <div className="w-full sm:max-w-sm bg-sp bg-opacity-25 flex flex-row rounded-md ring-1 ring-blue-600">
