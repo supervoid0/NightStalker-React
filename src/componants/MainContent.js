@@ -29,7 +29,7 @@ function MainContent() {
             const responseOfSearch = await axios.get(Search_URL + query)
             setMusicData(responseOfSearch.data.data)
         } catch (error) {
-            console.log(error)
+            console.log("error fetching data")
         }
     }
 
@@ -38,7 +38,7 @@ function MainContent() {
             const response = await axios.get(URL)
             setMusicData(response.data.tracks.data)
         } catch (error) {
-            console.log(error)
+            console.log("error fetching data")
         }
     }
 
