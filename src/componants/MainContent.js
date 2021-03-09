@@ -1,6 +1,6 @@
 import React from 'react'
+import {useEffect, useState, useCallback} from 'react'
 import axios from 'axios'
-import {useEffect, useState} from 'react'
 import { BsSearch } from "react-icons/bs";
 import MusicPreview from './MusicPreview'
 import Midbanner from './Midbanner'
@@ -33,11 +33,19 @@ function MainContent() {
         }
     }
 
+    const getMoreMusic = useCallback(async () => {
+        try {
+            const responseOfMore = await axios.get(MusicData.next)
+            setMusicData(responseOfMore.data)
+        } catch (error) {
+            console.log(error, 'error fetching new preview data')
+        }
+    },[MusicData]) 
+
     const getMusic = async () =>{
         try {
             const response = await axios.get(URL)
             setMusicData(response.data.tracks)
-            console.log(response)
         } catch (error) {
             console.log("error fetching data")
         }
@@ -72,7 +80,7 @@ function MainContent() {
                 <div className="hidden lg:w-3/12 xl:w-2/12 lg:flex"></div>
 
                 {/*music section*/}
-                {MusicData !== null? <MusicPreview MusicData={MusicData}/>:null}
+                {MusicData !== null? <MusicPreview MusicData={MusicData} getMoreMusic={getMoreMusic}/>:null}
 
                 {/*Right section*/}
                 <div className="lg:w-3/12 xl:w-2/12 text-white"></div>
