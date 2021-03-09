@@ -1,10 +1,14 @@
 import React from 'react'
+import {BsChevronDoubleRight} from 'react-icons/bs'
+import imageShowMore from '../Assests/tyler-nix.jpg'
 
 function MusicPreview({MusicData}) {
     return (
         <div className="w-full lg:w-6/12 xl:w-7/12 2xl:w-6/12 flex-shrink-0 overflow-y-auto max-h-460 sm:max-h-440 sm:mt-4 sm:border border-gray-800 sm:p-4 rounded" >
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 xl:grid-cols-3 gap-2 sm:gap-4 grid-flow-row">
-                {MusicData? MusicData.map((each)=>(<Cards data={each} key={each.id}/>)):<p>Loading..</p>}
+                {MusicData? MusicData.data.map((each)=>(<Cards data={each} key={each.id}/>)):<p>Loading..</p>}
+
+                {MusicData.next? <ShowMoreCards/>:null}
             </div>
         </div>
     )
@@ -28,6 +32,21 @@ function Cards({data}) {
                 <audio controls className="w-full h-5">
                     <source src={data.preview} type="audio/mpeg"/>
                 </audio>
+            </div>
+        </div>
+    )
+}
+
+function ShowMoreCards(){
+    return(
+        <div className="border border-gray-800 rounded p-2 col-span-1 sm:col-span-2 lg:col-span-1 xl:col-span-2 flex bg-green-500 hover:bg-blue-500 hover:bg-opacity-10 bg-opacity-5 cursor-pointer">
+            <img className="h-26 w-7/12 object-cover" src={imageShowMore}/>
+            <div className="flex text-blue-600 text-xl text-center items-center mx-auto">
+                <div className="flex flex-col my-auto font-semibold mx-2">
+                    <span>Show</span>
+                    <span>More</span>
+                </div>
+                <div className="text-4xl"><BsChevronDoubleRight/></div>
             </div>
         </div>
     )

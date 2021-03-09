@@ -27,7 +27,7 @@ function MainContent() {
     const getSearchedMusic = async () =>{
         try {
             const responseOfSearch = await axios.get(Search_URL + query)
-            setMusicData(responseOfSearch.data.data)
+            setMusicData(responseOfSearch.data)
         } catch (error) {
             console.log("error fetching data")
         }
@@ -36,7 +36,8 @@ function MainContent() {
     const getMusic = async () =>{
         try {
             const response = await axios.get(URL)
-            setMusicData(response.data.tracks.data)
+            setMusicData(response.data.tracks)
+            console.log(response)
         } catch (error) {
             console.log("error fetching data")
         }
